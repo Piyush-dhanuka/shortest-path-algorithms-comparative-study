@@ -45,11 +45,11 @@ void addEdge(Graph *g, int u, int v, int w)
     {
         if (g->edgeCount >= g->edgeCapacity)
         {
-             printf("Warning: Edge capacity limit reached. Edge not added.\n");
+            printf("Warning: Edge capacity limit reached. Edge not added.\n");
         }
         else
         {
-             printf("Error: Node index out of bounds.\n");
+            printf("Error: Node index out of bounds.\n");
         }
         return;
     }
@@ -70,7 +70,7 @@ void freeGraph(Graph *g)
 
 Graph* createSampleGraph()
 {
-    printf("Creating Sample Graph with 10 Nodes (0–9)...\n");
+    printf("Creating Sample Graph with 10 Nodes (0-9)...\n");
     Graph *g = createGraph(10, 20); 
     
     addEdge(g, 0, 1, 4);
@@ -262,25 +262,20 @@ int** floydWarshall(Graph *g, double *time_ms, int *hasNegCycle, int ***pred_out
     for (int i = 0; i < V; i++)
     {
         dist[i] = (int*)malloc(V * sizeof(int));
-        pred[i] = (int*)malloc(V * sizeof(int)); 
+        pred[i] = (int*)malloc(V * sizeof(int));
+
         for (int j = 0; j < V; j++)
         {
             dist[i][j] = g->adj[i][j];
-            
-            if (i == j)
-            {
-                pred[i][j] = -1; 
-            }
-            else if (g->adj[i][j] != INF)
-            {
+
+            if (g->adj[i][j] != INF)
                 pred[i][j] = i;
-            }
             else
-            {
                 pred[i][j] = -1;
-            }
         }
+
         dist[i][i] = 0;
+        pred[i][i] = -1;  
     }
 
     clock_t t0 = clock();
@@ -313,7 +308,6 @@ int** floydWarshall(Graph *g, double *time_ms, int *hasNegCycle, int ***pred_out
     *time_ms = ((double)(t1 - t0) / CLOCKS_PER_SEC) * 1000.0;
     *hasNegCycle = negCycle;
     
-    
     *pred_out = pred; 
 
     printf("\nAll-Pairs Distance Matrix:\n");
@@ -345,21 +339,17 @@ int** floydWarshall(Graph *g, double *time_ms, int *hasNegCycle, int ***pred_out
 
 
 int main()
-{
-    
+{    
     Graph *g = createSampleGraph(); 
     int s = 0, t = 9; 
     int V = g->V;
 
-    
     int *dist = (int*)malloc(V * sizeof(int));
     int *pred = (int*)malloc(V * sizeof(int));
-    
     
     double d_time, bf_time, fw_time;
     int negCycle;
 
-    
     printf("\n======================================================================\n");
     printf("A. DIJKSTRA'S ALGORITHM\n");
     printf("======================================================================\n");
@@ -375,7 +365,6 @@ int main()
         printf("N/A");
     printf("\n");
 
-    
     printf("\n======================================================================\n");
     printf("B. BELLMAN-FORD ALGORITHM\n");
     printf("======================================================================\n");
@@ -395,8 +384,7 @@ int main()
         printf("\n");
     }
     printf("Time Taken: %.4f ms\n", bf_time);
-
-    
+ 
     printf("\n======================================================================\n");
     printf("C. FLOYD-WARSHALL ALGORITHM\n");
     printf("======================================================================\n");
@@ -421,9 +409,7 @@ int main()
         reconstructFWPath(fw_pred, s, t);
         printf("\n");
     }
-
-
-    
+  
     printf("\n======================================================================\n");
     printf("D. FINAL TIME COMPLEXITY COMPARISON\n");
     printf("======================================================================\n");
@@ -438,23 +424,19 @@ int main()
     
     free(dist);
     free(pred);
-    
-    
+      
     if (fw_dist)
     {
         for (int i = 0; i < V; i++) free(fw_dist[i]);
         free(fw_dist);
     }
-    
-    
+     
     if (fw_pred)
     {
         for (int i = 0; i < V; i++) free(fw_pred[i]);
         free(fw_pred);
     }
 
-    
     freeGraph(g);
-
     return 0;
 }
