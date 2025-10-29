@@ -1,0 +1,34 @@
+Path: 0 -> 2 -> 1 -> 3 -> 6 -> 9
+Time Taken: 0.0000 ms
+
+======================================================================
+C. FLOYD-WARSHALL ALGORITHM
+======================================================================
+
+All-Pairs Distance Matrix:
+Source/Dest     Node 0  Node 1  Node 2  Node 3  Node 4  Node 5  Node 6  Node 7  Node 8  Node 9
+------------------------------------------------------------
+Node 0          0       3       2       8       6       10      18      8       16      19
+Node 1          INF     0       INF     5       3       9       15      5       15      16
+Node 2          INF     1       0       6       4       8       16      6       14      17
+Node 3          INF     INF     INF     0       12      4       10      9       10      11
+Node 4          INF     INF     INF     INF     0       INF     INF     2       INF     14
+Node 5          INF     INF     INF     INF     8       0       INF     5       6       13
+Node 6          INF     INF     INF     INF     INF     INF     0       INF     INF     1
+Node 7          INF     INF     INF     INF     INF     INF     INF     0       INF     12
+Node 8          INF     INF     INF     INF     2       INF     INF     4       0       7
+Node 9          INF     INF     INF     INF     INF     INF     INF     INF     INF     0
+------------------------------------------------------------
+Time Taken: 0.0000 ms
+Distance 0->9: 19
+Path: 0 -> 2 -> 1 -> 3 -> 6 -> 9
+
+======================================================================
+D. FINAL TIME COMPLEXITY COMPARISON
+======================================================================
+Algorithm      Complexity          Time (ms)      When to Use
+---------------------------------------------------------------------
+Dijkstra       O(V*V)              0.0000         Fastest for graphs with no negative edges
+Bellman-Ford   O(V * E)            0.0000         Needed if the graph has negative edges
+Floyd-Warshall O(V*V*V)            0.0000         To find all shortest paths at once
+======================================================================
