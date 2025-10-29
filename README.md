@@ -41,7 +41,7 @@ Developed as part of the **Design and Analysis of Algorithms (DAA) Laboratory Pr
 ## How to Run
 
 ### 1. Clone the Repository
-bash git clone https://github.com/<your-username>/shortest-path-algorithms-comparative-study.git
+git clone https://github.com/Piyush-dhanuka/shortest-path-algorithms-comparative-study.git
 cd shortest-path-algorithms-comparative-study
 
 ### 2. Compile the Code
