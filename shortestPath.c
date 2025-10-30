@@ -99,7 +99,7 @@ void reconstructPath(int *pred, int start, int end)
     
     if (pred[end] == -1 && end != start)
     { 
-        printf("N/A");
+        printf("No Path");
         return;
     }
 
@@ -120,7 +120,7 @@ void reconstructPath(int *pred, int start, int end)
     }
     else 
     {
-        printf("N/A"); 
+        printf("No Path"); 
     }
 }
 
@@ -128,7 +128,7 @@ void reconstructFWPath(int **pred, int start, int end)
 {
     if (pred[start][end] == -1 && start != end)
     {
-        printf("N/A");
+        printf("No Path");
         return;
     }
     
@@ -440,3 +440,4 @@ int main()
     freeGraph(g);
     return 0;
 }
+
